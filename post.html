@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Artigo | Editora Guarnieri</title>
+  <meta name="description" id="page-desc" content="Artigo da Editora Guarnieri sobre ghostwriting executivo, autoridade intelectual e mercado editorial.">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" id="og-title" content="Artigo | Editora Guarnieri">
+  <meta property="og:description" id="og-desc" content="Artigo da Editora Guarnieri sobre publicação de alta patente.">
+  <meta property="og:image" id="og-image" content="">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            'canvas-off-white': '#FAF7F2',
+            'bordeaux-deep': '#6B1F2E',
+            'bordeaux-wine': '#4A1520',
+            'charcoal-ink': '#2B2424',
+            'warm-gray': '#6B5E5E',
+            'aged-gold': '#B8935A',
+            'surface-cream': '#F2ECE2',
+            'border-subtle': '#8B3A47'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Montserrat"', 'system-ui', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Script Schema.org BlogPosting dinâmico -->
+  <script id="schema-blog-posting" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting"
+  }
+  </script>
+</head>
+<body class="bg-canvas-off-white text-charcoal-ink font-sans antialiased selection:bg-bordeaux-deep selection:text-canvas-off-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="sticky top-0 left-0 w-full z-50 bg-bordeaux-wine text-canvas-off-white shadow-md border-b border-aged-gold/20">
+    <div class="h-20 max-w-[1360px] mx-auto px-5 sm:px-6 lg:px-12 flex items-center justify-between gap-3 sm:gap-4">
+      <a href="index.html#inicio" class="flex items-center gap-2.5 sm:gap-3 shrink-0 py-1">
+        <img src="img/logo-icon.svg" 
+             alt="Editora Guarnieri" 
+             class="h-8 md:h-9 w-8 md:w-9 shrink-0 object-contain"
+             width="36" height="36">
+        <div class="flex flex-col">
+          <span class="text-[9px] sm:text-[10px] tracking-[0.25em] font-bold uppercase text-aged-gold leading-none">EDITORA</span>
+          <span class="font-display text-xs sm:text-sm tracking-[0.16em] font-extrabold uppercase text-canvas-off-white leading-tight">GUARNIERI</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium uppercase tracking-wider text-canvas-off-white/80">
+        <a href="index.html#inicio" class="hover:text-aged-gold transition-colors">Início</a>
+        <a href="index.html#solucao" class="hover:text-aged-gold transition-colors">Solução</a>
+        <a href="blog.html" class="hover:text-aged-gold transition-colors">Blog</a>
+        <a href="index.html#contato" class="hover:text-aged-gold transition-colors">Contato</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#contato" class="hidden sm:inline-flex px-4 py-2 rounded border border-aged-gold text-xs font-bold uppercase tracking-wider text-canvas-off-white bg-bordeaux-deep hover:bg-aged-gold hover:text-bordeaux-wine transition-all">
+          Agendar Call
+        </a>
+        <button id="post-mobile-toggle" type="button" class="md:hidden p-2 text-canvas-off-white hover:text-aged-gold focus:outline-none" aria-label="Abrir Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Drawer -->
+    <div id="post-mobile-menu" class="hidden md:hidden bg-bordeaux-wine/98 backdrop-blur-xl border-b border-aged-gold/30 px-6 py-6 shadow-2xl">
+      <nav class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider text-canvas-off-white/90">
+        <a href="index.html#inicio" class="hover:text-aged-gold py-1">Início</a>
+        <a href="index.html#solucao" class="hover:text-aged-gold py-1">Solução</a>
+        <a href="blog.html" class="hover:text-aged-gold py-1">Blog</a>
+        <a href="index.html#contato" class="hover:text-aged-gold py-1">Contato</a>
+        <div class="pt-2">
+          <a href="index.html#contato" class="w-full py-2.5 px-4 rounded bg-bordeaux-deep border border-aged-gold text-center font-bold text-xs uppercase tracking-wider text-canvas-off-white shadow-md block">
+            Agendar Call Estratégica
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Container do Artigo -->
+  <main class="w-full flex-1 py-12 lg:py-16 px-6 lg:px-12">
+    <div class="max-w-4xl mx-auto space-y-10" id="article-wrapper">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-warm-gray" aria-label="Breadcrumbs">
+        <a href="index.html" class="hover:text-bordeaux-deep">Início</a>
+        <span>/</span>
+        <a href="blog.html" class="hover:text-bordeaux-deep">Blog</a>
+        <span>/</span>
+        <span id="breadcrumb-category" class="text-aged-gold font-semibold">Categoria</span>
+      </nav>
+
+      <!-- Cabeçalho do Artigo -->
+      <header class="space-y-6">
+        <div class="flex items-center gap-3 text-xs">
+          <span id="post-category" class="px-3.5 py-1 rounded-full bg-bordeaux-deep/10 text-bordeaux-deep font-bold uppercase tracking-widest text-[11px]"></span>
+          <span id="post-readtime" class="text-warm-gray font-medium"></span>
+        </div>
+
+        <h1 id="post-title" class="font-display text-3xl sm:text-5xl text-bordeaux-wine font-extrabold leading-[1.2]"></h1>
+
+        <div class="flex items-center gap-4 pt-2 border-t border-bordeaux-deep/10 pt-4">
+          <div class="w-12 h-12 rounded-full bg-bordeaux-deep text-canvas-off-white flex items-center justify-center font-display font-bold text-lg" id="author-avatar">
+            EG
+          </div>
+          <div>
+            <p id="post-author" class="font-display text-sm font-bold text-bordeaux-deep"></p>
+            <p id="post-author-role" class="text-xs text-warm-gray"></p>
+          </div>
+          <div class="ml-auto text-xs text-warm-gray">
+            <span id="post-date"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Imagem de Destaque -->
+      <div class="w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-lg bg-surface-cream border border-bordeaux-deep/10">
+        <img id="post-image" src="" alt="" class="w-full h-full object-cover">
+      </div>
+
+      <!-- Conteúdo Formatado -->
+      <article id="post-content" class="prose max-w-none text-charcoal-ink text-base sm:text-lg leading-relaxed space-y-6">
+        <!-- Injetado via JS -->
+      </article>
+
+      <!-- Compartilhamento & Metadados -->
+      <div class="pt-8 border-t border-bordeaux-deep/10 flex flex-wrap items-center justify-between gap-4 text-xs text-warm-gray">
+        <div class="flex items-center gap-2">
+          <span class="font-bold uppercase tracking-wider text-charcoal-ink">Compartilhar:</span>
+          <button onclick="shareArticle()" class="px-3 py-1.5 rounded bg-surface-cream hover:bg-aged-gold/20 text-bordeaux-wine font-semibold flex items-center gap-1 transition-colors">
+            Copiar Link
+          </button>
+        </div>
+        <a href="blog.html" class="text-bordeaux-deep hover:text-aged-gold font-bold uppercase tracking-wider flex items-center gap-1">
+          ← Voltar para Todos os Artigos
+        </a>
+      </div>
+
+      <!-- ========================================================
+           BOTÃO DE CTA PARA O FORMULÁRIO DE CONTATO (Obrigatório)
+           ======================================================== -->
+      <section class="mt-16 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-bordeaux-wine to-bordeaux-deep text-canvas-off-white shadow-2xl border border-aged-gold/30 text-center space-y-6">
+        <span class="text-xs font-bold uppercase text-aged-gold tracking-widest block">Ateliê de Ghostwriting & Publicação C-Level</span>
+        <h2 class="font-display text-2xl sm:text-4xl font-extrabold max-w-xl mx-auto leading-tight">
+          Pronto Para Transformar Seu Conhecimento em um Livro de Autoridade?
+        </h2>
+        <p class="text-sm sm:text-base text-canvas-off-white/85 max-w-lg mx-auto leading-relaxed">
+          Conduzimos sua obra com governança executiva em 12 semanas. 100% dos royalties e direitos patrimoniais permanecem integralmente com você.
+        </p>
+        <div class="pt-2">
+          <a href="index.html#contato" class="inline-flex items-center justify-center px-8 py-4 rounded bg-aged-gold hover:bg-aged-gold/90 text-bordeaux-wine font-display text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md hover:scale-105">
+            Agendar Call Estratégica Confidencial →
+          </a>
+        </div>
+      </section>
+
+      <!-- Artigos Relacionados -->
+      <div class="pt-12 border-t border-bordeaux-deep/10 space-y-6">
+        <h3 class="font-display text-2xl text-bordeaux-wine font-bold">Artigos Relacionados</h3>
+        <div id="related-posts" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="w-full bg-bordeaux-wine text-canvas-off-white py-12 px-6 lg:px-12 border-t border-aged-gold/30">
+    <div class="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-canvas-off-white/70">
+      <div class="flex items-center gap-3">
+        <img src="img/logo-icon.svg" 
+             alt="Editora Guarnieri" 
+             class="h-6 w-6 object-contain"
+             width="24" height="24">
+        <span>© 2026 Editora Guarnieri. Publicação de Prestígio.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="index.html#inicio" class="hover:text-aged-gold">Início</a>
+        <a href="blog.html" class="hover:text-aged-gold">Blog</a>
+        <a href="index.html#contato" class="hover:text-aged-gold text-aged-gold font-semibold">Agendar Call</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/blog-cms.js"></script>
+  <script>
+    async function loadPostDetail() {
+      await window.BlogCMS.init();
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('slug') || urlParams.get('id') || 'o-poder-do-livro-fisico-na-era-da-inteligencia-artificial';
+
+      const post = window.BlogCMS.getBySlug(slug) || window.BlogCMS.getAll()[0];
+      if (!post) {
+        document.getElementById('post-title').innerText = 'Artigo não encontrado';
+        return;
+      }
+
+      // Preenchimento de Conteúdo e SEO
+      document.title = `${post.title} | Editora Guarnieri`;
+      document.getElementById('page-title').innerText = `${post.title} | Editora Guarnieri`;
+      document.getElementById('page-desc').setAttribute('content', post.summary);
+      document.getElementById('og-title').setAttribute('content', post.title);
+      document.getElementById('og-desc').setAttribute('content', post.summary);
+      document.getElementById('og-image').setAttribute('content', post.image);
+
+      document.getElementById('breadcrumb-category').innerText = post.category;
+      document.getElementById('post-category').innerText = post.category;
+      document.getElementById('post-readtime').innerText = post.readTime;
+      document.getElementById('post-title').innerText = post.title;
+      document.getElementById('post-author').innerText = post.author;
+      document.getElementById('post-author-role').innerText = post.authorRole || 'Comitê Editorial';
+      document.getElementById('post-date').innerText = window.formatDateBR ? window.formatDateBR(post.date) : post.date;
+      document.getElementById('author-avatar').innerText = post.author.split(' ').map(n=>n[0]).slice(0,2).join('');
+
+      const imgEl = document.getElementById('post-image');
+      imgEl.src = post.image;
+      imgEl.alt = post.title;
+
+      document.getElementById('post-content').innerHTML = post.content;
+
+      // Injeção do Schema.org BlogPosting dinâmico
+      const schemaEl = document.getElementById('schema-blog-posting');
+      if (schemaEl) {
+        const schemaObj = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "description": post.summary,
+          "image": post.image,
+          "datePublished": post.date,
+          "author": {
+            "@type": "Person",
+            "name": post.author,
+            "jobTitle": post.authorRole || "Diretora Editorial"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Editora Guarnieri",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://lh3.googleusercontent.com/aida/AEtjO1X6GkBc6t_tl9z3OESwXl9GwjTGbRZMHdV_28BE5miLOvgQ4dgQghuBpRKpgP8K6JVDk-buiGZbrk3i2621lAZ4pMptyS3US1DpvGEuyGKXXEdXYZJWAdPNBeXyp0rdKWlO_uOJiiNa4K4081FRIkXvgR-rIqRMYa1dGqxeHeKul8gXtxzAaCxP_w2UQBtG-N0z01ZYybT25LthMP1FzLOFdN03jvMh1Pxb7m3uZYNY40efQikZ4Q0szf8"
+            }
+          }
+        };
+        schemaEl.textContent = JSON.stringify(schemaObj, null, 2);
+      }
+
+      // Artigos Relacionados
+      const related = window.BlogCMS.getAll().filter(p => p.id !== post.id).slice(0, 2);
+      const relContainer = document.getElementById('related-posts');
+      if (relContainer && related.length > 0) {
+        relContainer.innerHTML = related.map(r => `
+          <div class="p-6 rounded-2xl bg-surface-cream shadow-sm hover:shadow-md transition-shadow border border-bordeaux-deep/10 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <span class="text-[10px] text-aged-gold uppercase tracking-wider font-bold">${r.category}</span>
+              <h4 class="font-display text-base font-bold text-bordeaux-wine">
+                <a href="post.html?slug=${r.slug}" class="hover:text-aged-gold transition-colors">${r.title}</a>
+              </h4>
+              <p class="text-xs text-warm-gray line-clamp-2">${r.summary}</p>
+            </div>
+            <a href="post.html?slug=${r.slug}" class="text-xs text-bordeaux-deep font-bold uppercase tracking-wider hover:text-aged-gold flex items-center gap-1">
+              Ler Artigo →
+            </a>
+          </div>
+        `).join('');
+      }
+    }
+
+    function shareArticle() {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link do artigo copiado para a área de transferência!');
+    }
+
+    // Controle do Menu Mobile do Post
+    const postToggle = document.getElementById('post-mobile-toggle');
+    const postMenu = document.getElementById('post-mobile-menu');
+    if (postToggle && postMenu) {
+      postToggle.addEventListener('click', () => {
+        postMenu.classList.toggle('hidden');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPostDetail);
+  </script>
+</body>
+</html>

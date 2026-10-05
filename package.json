@@ -1,0 +1,23 @@
+{
+  "name": "editora-guarnieri-landingpage",
+  "version": "1.0.0",
+  "description": "Site de alta conversão e blog dinâmico CMS para a Editora Guarnieri",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-form-schema.js"
+  },
+  "keywords": [
+    "editora-guarnieri",
+    "ghostwriting",
+    "c-level",
+    "landing-page",
+    "cms-blog"
+  ],
+  "author": "Editora Guarnieri",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  }
+}

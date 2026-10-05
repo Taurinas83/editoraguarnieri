@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Editorial & Ensaios | Editora Guarnieri</title>
+  <meta name="description" content="Ensaios sobre autoridade executiva, ghostwriting C-Level, retenção de royalties e o mercado editorial de alta patente.">
+  <link rel="canonical" href="https://editoraguarnieri.com.br/blog.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog Editorial & Ensaios | Editora Guarnieri">
+  <meta property="og:description" content="Artigos e reflexões estratégicas sobre o mercado editorial executivo, autoria e prestígio.">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/aida/AEtjO1X6GkBc6t_tl9z3OESwXl9GwjTGbRZMHdV_28BE5miLOvgQ4dgQghuBpRKpgP8K6JVDk-buiGZbrk3i2621lAZ4pMptyS3US1DpvGEuyGKXXEdXYZJWAdPNBeXyp0rdKWlO_uOJiiNa4K4081FRIkXvgR-rIqRMYa1dGqxeHeKul8gXtxzAaCxP_w2UQBtG-N0z01ZYybT25LthMP1FzLOFdN03jvMh1Pxb7m3uZYNY40efQikZ4Q0szf8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            'canvas-off-white': '#FAF7F2',
+            'bordeaux-deep': '#6B1F2E',
+            'bordeaux-wine': '#4A1520',
+            'charcoal-ink': '#2B2424',
+            'warm-gray': '#6B5E5E',
+            'aged-gold': '#B8935A',
+            'surface-cream': '#F2ECE2',
+            'border-subtle': '#8B3A47'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Montserrat"', 'system-ui', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-canvas-off-white text-charcoal-ink font-sans antialiased selection:bg-bordeaux-deep selection:text-canvas-off-white min-h-screen flex flex-col justify-between">
+
+  <!-- Header Fixo -->
+  <header class="sticky top-0 left-0 w-full z-50 bg-bordeaux-wine text-canvas-off-white shadow-md border-b border-aged-gold/20">
+    <div class="h-20 max-w-[1360px] mx-auto px-5 sm:px-6 lg:px-12 flex items-center justify-between gap-3 sm:gap-4">
+      <a href="index.html#inicio" class="flex items-center gap-2.5 sm:gap-3 shrink-0 py-1">
+        <img src="img/logo-icon.svg" 
+             alt="Editora Guarnieri" 
+             class="h-8 md:h-9 w-8 md:w-9 shrink-0 object-contain"
+             width="36" height="36">
+        <div class="flex flex-col">
+          <span class="text-[9px] sm:text-[10px] tracking-[0.25em] font-bold uppercase text-aged-gold leading-none">EDITORA</span>
+          <span class="font-display text-xs sm:text-sm tracking-[0.16em] font-extrabold uppercase text-canvas-off-white leading-tight">GUARNIERI</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium uppercase tracking-wider text-canvas-off-white/80">
+        <a href="index.html#inicio" class="hover:text-aged-gold transition-colors">Início</a>
+        <a href="index.html#solucao" class="hover:text-aged-gold transition-colors">Metodologia</a>
+        <a href="index.html#autores" class="hover:text-aged-gold transition-colors">Autores</a>
+        <a href="blog.html" class="text-aged-gold font-bold">Blog</a>
+        <a href="index.html#contato" class="hover:text-aged-gold transition-colors">Contato</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#contato" class="hidden sm:inline-flex px-4 py-2 rounded border border-aged-gold text-xs font-bold uppercase tracking-wider text-canvas-off-white bg-bordeaux-deep hover:bg-aged-gold hover:text-bordeaux-wine transition-all">
+          Agendar Call
+        </a>
+        <button id="blog-mobile-toggle" type="button" class="md:hidden p-2 text-canvas-off-white hover:text-aged-gold focus:outline-none" aria-label="Abrir Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Drawer -->
+    <div id="blog-mobile-menu" class="hidden md:hidden bg-bordeaux-wine/98 backdrop-blur-xl border-b border-aged-gold/30 px-6 py-6 shadow-2xl">
+      <nav class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wider text-canvas-off-white/90">
+        <a href="index.html#inicio" class="hover:text-aged-gold py-1">Início</a>
+        <a href="index.html#solucao" class="hover:text-aged-gold py-1">Metodologia</a>
+        <a href="index.html#autores" class="hover:text-aged-gold py-1">Autores</a>
+        <a href="blog.html" class="text-aged-gold font-bold py-1">Blog</a>
+        <a href="index.html#contato" class="hover:text-aged-gold py-1">Contato</a>
+        <div class="pt-2">
+          <a href="index.html#contato" class="w-full py-2.5 px-4 rounded bg-bordeaux-deep border border-aged-gold text-center font-bold text-xs uppercase tracking-wider text-canvas-off-white shadow-md block">
+            Agendar Call Estratégica
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner do Blog -->
+  <section class="py-16 lg:py-20 px-6 lg:px-12 bg-surface-cream border-b border-bordeaux-deep/10">
+    <div class="max-w-[1360px] mx-auto text-center space-y-4">
+      <span class="text-xs font-bold uppercase text-aged-gold tracking-widest block">Acervo Intelectual & Reflexões</span>
+      <h1 class="font-display text-3xl sm:text-5xl text-bordeaux-wine font-extrabold">
+        Blog da Editora Guarnieri
+      </h1>
+      <p class="text-base sm:text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
+        Ensaios profundos sobre o mercado de publicação executiva, metodologia de ghostwriting, autoridade intelectual e preservação de patrimônio autoral.
+      </p>
+
+      <!-- Barra de Busca -->
+      <div class="max-w-md mx-auto pt-4">
+        <div class="relative">
+          <input type="text" id="search-input" placeholder="Buscar por título, palavra-chave ou tema..." 
+                 class="w-full px-5 py-3 pl-11 rounded-full bg-canvas-off-white border border-bordeaux-deep/20 text-sm text-charcoal-ink focus:outline-none focus:ring-2 focus:ring-bordeaux-deep">
+          <svg class="w-5 h-5 text-aged-gold absolute left-4 top-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal do Blog -->
+  <main class="max-w-[1360px] mx-auto px-6 lg:px-12 py-16 w-full flex-1 space-y-10">
+    
+    <!-- Filtros de Categorias Funcionais Conforme Item 4 do Prompt -->
+    <div class="flex flex-wrap items-center justify-center gap-2 pt-2 border-b border-bordeaux-deep/10 pb-6">
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-bordeaux-deep text-canvas-off-white" data-cat="Todas">
+        Todas
+      </button>
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20" data-cat="Mercado Editorial">
+        Mercado Editorial
+      </button>
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20" data-cat="Autoridade e Liderança">
+        Autoridade e Liderança
+      </button>
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20" data-cat="Bastidores da Escrita">
+        Bastidores da Escrita
+      </button>
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20" data-cat="Direitos Autorais e Royalties">
+        Direitos Autorais e Royalties
+      </button>
+      <button class="cat-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20" data-cat="Publicação Profissional">
+        Publicação Profissional
+      </button>
+    </div>
+
+    <!-- Grade de Posts -->
+    <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Renderizado via JavaScript -->
+    </div>
+
+    <!-- Mensagem de Nenhum Post Encontrado -->
+    <div id="no-posts" class="hidden text-center py-16 space-y-4">
+      <p class="font-display text-xl text-bordeaux-wine font-bold">Nenhum artigo encontrado com esses critérios.</p>
+      <button onclick="resetFilters()" class="px-5 py-2 rounded bg-bordeaux-deep text-canvas-off-white text-xs font-bold uppercase">
+        Ver Todos os Artigos
+      </button>
+    </div>
+
+    <!-- Paginação Dinâmica -->
+    <div id="pagination-controls" class="flex items-center justify-center gap-2 pt-8 border-t border-bordeaux-deep/10">
+      <!-- Botões de página injetados aqui -->
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="w-full bg-bordeaux-wine text-canvas-off-white py-12 px-6 lg:px-12 border-t border-aged-gold/30">
+    <div class="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-canvas-off-white/70">
+      <div class="flex items-center gap-3">
+        <img src="img/logo-icon.svg" 
+             alt="Editora Guarnieri" 
+             class="h-6 w-6 object-contain"
+             width="24" height="24">
+        <span>© 2026 Editora Guarnieri. Publicação de Prestígio e Ateliê de Ghostwriting C-Level.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="index.html#inicio" class="hover:text-aged-gold">Página Inicial</a>
+        <a href="index.html#solucao" class="hover:text-aged-gold">Metodologia</a>
+        <a href="index.html#contato" class="hover:text-aged-gold text-aged-gold font-semibold">Agendar Reunião</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/blog-cms.js"></script>
+  <script>
+    let activeCategory = 'Todas';
+    let searchQuery = '';
+    let currentPage = 1;
+    const postsPerPage = 6;
+
+    async function initBlogPage() {
+      await window.BlogCMS.init();
+      renderBlog();
+
+      // Event listeners dos filtros de categoria
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.cat-filter-btn').forEach(b => {
+            b.classList.remove('bg-bordeaux-deep', 'text-canvas-off-white');
+            b.classList.add('bg-surface-cream', 'text-charcoal-ink');
+          });
+          btn.classList.remove('bg-surface-cream', 'text-charcoal-ink');
+          btn.classList.add('bg-bordeaux-deep', 'text-canvas-off-white');
+
+          activeCategory = btn.getAttribute('data-cat');
+          currentPage = 1;
+          renderBlog();
+        });
+      });
+
+      // Busca por input
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.toLowerCase().trim();
+          currentPage = 1;
+          renderBlog();
+        });
+      }
+    }
+
+    function renderBlog() {
+      const allPosts = window.BlogCMS.getAll();
+      let filtered = allPosts;
+
+      // Filtro de categoria
+      if (activeCategory !== 'Todas') {
+        filtered = filtered.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+      }
+
+      // Filtro de busca
+      if (searchQuery) {
+        filtered = filtered.filter(p => 
+          p.title.toLowerCase().includes(searchQuery) || 
+          p.summary.toLowerCase().includes(searchQuery) ||
+          p.category.toLowerCase().includes(searchQuery) ||
+          p.author.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      const grid = document.getElementById('posts-grid');
+      const noPosts = document.getElementById('no-posts');
+      const pagination = document.getElementById('pagination-controls');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noPosts.classList.remove('hidden');
+        pagination.innerHTML = '';
+        return;
+      }
+
+      noPosts.classList.add('hidden');
+
+      // Paginação
+      const totalPages = Math.ceil(filtered.length / postsPerPage);
+      if (currentPage > totalPages) currentPage = totalPages;
+      const startIndex = (currentPage - 1) * postsPerPage;
+      const paginatedPosts = filtered.slice(startIndex, startIndex + postsPerPage);
+
+      grid.innerHTML = paginatedPosts.map(post => `
+        <article class="p-6 sm:p-8 rounded-2xl bg-surface-cream shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between space-y-6 border border-bordeaux-deep/10">
+          <div class="space-y-4">
+            <div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-canvas-off-white">
+              <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" loading="lazy">
+            </div>
+            <div class="flex items-center justify-between text-xs pt-1">
+              <span class="text-[10px] text-aged-gold uppercase tracking-wider font-bold">${post.category}</span>
+              <span class="text-warm-gray text-[11px]">${post.readTime}</span>
+            </div>
+            <h2 class="font-display text-xl text-bordeaux-wine font-bold leading-tight">
+              <a href="post.html?slug=${post.slug}" class="hover:text-aged-gold transition-colors">
+                ${post.title}
+              </a>
+            </h2>
+            <p class="text-sm text-warm-gray leading-relaxed line-clamp-3">
+              ${post.summary}
+            </p>
+          </div>
+          <div class="pt-4 border-t border-bordeaux-deep/10 flex items-center justify-between">
+            <a href="post.html?slug=${post.slug}" class="text-xs font-bold uppercase tracking-wider text-bordeaux-deep hover:text-aged-gold flex items-center gap-1.5 transition-colors">
+              <span>Ler Artigo</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            <span class="text-[11px] text-warm-gray">${window.formatDateBR ? window.formatDateBR(post.date) : post.date}</span>
+          </div>
+        </article>
+      `).join('');
+
+      // Renderizar paginação
+      if (totalPages > 1) {
+        let pagHtml = '';
+        for (let i = 1; i <= totalPages; i++) {
+          pagHtml += `
+            <button onclick="goToPage(${i})" class="w-9 h-9 rounded-full text-xs font-bold ${i === currentPage ? 'bg-bordeaux-deep text-canvas-off-white shadow' : 'bg-surface-cream text-charcoal-ink hover:bg-aged-gold/20'}">
+              ${i}
+            </button>
+          `;
+        }
+        pagination.innerHTML = pagHtml;
+      } else {
+        pagination.innerHTML = '';
+      }
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderBlog();
+      window.scrollTo({ top: 400, behavior: 'smooth' });
+    }
+
+    function resetFilters() {
+      activeCategory = 'Todas';
+      searchQuery = '';
+      const input = document.getElementById('search-input');
+      if (input) input.value = '';
+      document.querySelectorAll('.cat-filter-btn').forEach(b => {
+        if (b.getAttribute('data-cat') === 'Todas') {
+          b.classList.remove('bg-surface-cream', 'text-charcoal-ink');
+          b.classList.add('bg-bordeaux-deep', 'text-canvas-off-white');
+        } else {
+          b.classList.add('bg-surface-cream', 'text-charcoal-ink');
+          b.classList.remove('bg-bordeaux-deep', 'text-canvas-off-white');
+        }
+      });
+      renderBlog();
+    }
+
+    // Controle do Menu Mobile do Blog
+    const blogToggle = document.getElementById('blog-mobile-toggle');
+    const blogMenu = document.getElementById('blog-mobile-menu');
+    if (blogToggle && blogMenu) {
+      blogToggle.addEventListener('click', () => {
+        blogMenu.classList.toggle('hidden');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', initBlogPage);
+  </script>
+</body>
+</html>
