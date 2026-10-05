@@ -5,3 +5,4 @@ screen.png
 leads.json
 scratch*
 *.log
+.env*
