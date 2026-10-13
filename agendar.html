@@ -208,6 +208,66 @@
 
       </div>
 
+      <!-- SEÇÃO EXCLUSIVA: NENHUM HORÁRIO CONVENIENTE? SOLICITE UM HORÁRIO PERSONALIZADO -->
+      <div id="secao-horario-alternativo" class="mt-8 p-6 sm:p-8 rounded-2xl bg-[#F2ECE2] border border-[#B8935A]/30 card-shadow scroll-mt-24">
+        <div class="max-w-2xl mx-auto">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4A1520]/10 text-[#4A1520] text-xs font-semibold uppercase tracking-wider mb-2">
+              <svg class="w-3.5 h-3.5 text-[#B8935A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Flexibilidade de Agenda para C-Levels
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-[#4A1520]">Não encontrou um horário conveniente para você?</h3>
+            <p class="text-xs sm:text-sm text-[#6B5E5E] mt-2 leading-relaxed">
+              Nossa diretoria executiva pode abrir uma janela especial fora da grade padrão. Deixe seus dados e sua disponibilidade para alinharmos diretamente via WhatsApp ou e-mail.
+            </p>
+          </div>
+
+          <!-- Mensagem de Sucesso de Horário Alternativo -->
+          <div id="horario-alternativo-sucesso" class="hidden p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-center space-y-2 mb-4">
+            <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center mx-auto font-bold text-lg">✓</div>
+            <h4 class="font-bold text-sm sm:text-base text-emerald-900">Solicitação de Horário Recebida com Sucesso!</h4>
+            <p class="text-xs sm:text-sm text-emerald-800">
+              Recebemos suas preferências de agenda. Nossa equipe entrará em contato em breve pelo seu WhatsApp/e-mail para confirmar a melhor janela para sua Sessão Estratégica.
+            </p>
+          </div>
+
+          <!-- Formulário de Horário Personalizado -->
+          <form id="form-horario-alternativo" onsubmit="enviarHorarioAlternativo(event)" class="space-y-4 bg-white p-6 sm:p-7 rounded-xl border border-[#E8DEC8] shadow-sm text-xs sm:text-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold text-[#4A1520] mb-1">Seu Nome Completo *</label>
+                <input type="text" id="alt-nome" required placeholder="Ex.: Roberto Mendonça" class="w-full px-3.5 py-2.5 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none">
+              </div>
+              <div>
+                <label class="block font-semibold text-[#4A1520] mb-1">E-mail Corporativo *</label>
+                <input type="email" id="alt-email" required placeholder="roberto@empresa.com.br" class="w-full px-3.5 py-2.5 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-semibold text-[#4A1520] mb-1">WhatsApp com DDD *</label>
+                <input type="tel" id="alt-whatsapp" required placeholder="(11) 98888-7777" class="w-full px-3.5 py-2.5 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none">
+              </div>
+              <div>
+                <label class="block font-semibold text-[#4A1520] mb-1">Tema / Objetivo do Livro (Opcional)</label>
+                <input type="text" id="alt-tema" placeholder="Ex.: Governança Corporativa" class="w-full px-3.5 py-2.5 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[#4A1520] mb-1">Quais os melhores dias e horários para você? *</label>
+              <textarea id="alt-observacao" required rows="3" placeholder="Ex.: Tenho preferência por terças ou quintas pela manhã (entre 09h e 11h), ou após as 18h30..." class="w-full px-3.5 py-2.5 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none"></textarea>
+            </div>
+
+            <button type="submit" id="btn-enviar-alt" class="w-full py-3.5 rounded-xl bg-[#4A1520] hover:bg-[#6B1F2E] text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2">
+              <span>Solicitar Janela de Horário com a Diretoria</span>
+              <svg class="w-4 h-4 text-[#B8935A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
       <!-- Informações complementares e FAQ de Alinhamento -->
       <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white/70 p-6 rounded-xl border border-[#E8DEC8]">
@@ -238,12 +298,37 @@
             Não é necessário ter nenhum manuscrito pronto ou texto escrito. Basta ter clareza sobre suas principais experiências, teses de mercado ou legado que deseja consolidar como líder.
           </p>
           <div class="p-3 bg-[#F2ECE2] rounded-lg border border-[#E8DEC8] text-xs text-[#4A1520]">
-            <strong>Precisa de outro horário específico?</strong> Caso não encontre um horário conveniente na agenda acima, entre em contato direto pelo e-mail: <a href="mailto:editoraguarnieri@gmail.com" class="underline font-bold text-[#B8935A]">editoraguarnieri@gmail.com</a>.
+            <strong>Precisa de outro horário específico?</strong> Utilize o formulário acima para solicitar uma janela de agenda ou nos contate diretamente pelo e-mail: <a href="mailto:editoraguarnieri@gmail.com" class="underline font-bold text-[#B8935A]">editoraguarnieri@gmail.com</a>.
           </div>
         </div>
       </div>
 
     </section>
+
+    <!-- MODAL DE FINALIZAÇÃO / CONFIRMAÇÃO DE IDENTIFICAÇÃO (APARECE SE FALTAR NOME DO LEAD) -->
+    <div id="modal-confirmar-identificacao" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div class="bg-white max-w-md w-full rounded-2xl border border-[#E8DEC8] p-6 shadow-2xl text-center space-y-4">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+        <h3 class="text-lg font-bold text-[#4A1520]">Horário Reservado na Agenda!</h3>
+        <p class="text-xs text-[#6B5E5E]">
+          Para garantirmos a geração correta do convite no Google Meet e enviarmos o lembrete, por favor confirme seu Nome e WhatsApp:
+        </p>
+        <form onsubmit="salvarIdentificacaoComplementar(event)" class="space-y-3 text-left text-xs sm:text-sm">
+          <input type="hidden" id="modal-cal-uid">
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">Seu Nome Completo *</label>
+            <input type="text" id="modal-lead-nome" required placeholder="Ex.: Dra. Helena Silveira" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">WhatsApp para Lembrete da Call *</label>
+            <input type="tel" id="modal-lead-whatsapp" required placeholder="(11) 99999-9999" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+          <button type="submit" class="w-full py-2.5 rounded-lg bg-[#4A1520] hover:bg-[#6B1F2E] text-white font-bold text-xs uppercase tracking-wider transition-colors">
+            Confirmar e Concluir
+          </button>
+        </form>
+      </div>
+    </div>
 
   </main>
 
@@ -275,60 +360,187 @@
       }
     });
 
-    // 2. Intercepta a conclusão do agendamento para alimentar o Mini CRM imediatamente
+    // 2. Função de extração profunda e robusta dos dados do Cal.com
+    function extrairDadosCalCom(eventDetail) {
+      var d = eventDetail || {};
+      var data = d.data || {};
+      var booking = data.booking || d.booking || {};
+      var responses = booking.responses || data.responses || {};
+      var attendees = booking.attendees || data.attendees || [];
+      var firstAttendee = attendees[0] || {};
+
+      var nome = firstAttendee.name || 
+                 responses.name || 
+                 responses.name_attendee || 
+                 data.name || 
+                 booking.name || 
+                 "";
+
+      var email = firstAttendee.email || 
+                  responses.email || 
+                  data.email || 
+                  booking.email || 
+                  "";
+
+      var whatsapp = responses.phone || 
+                     responses.whatsapp || 
+                     data.phone || 
+                     data.whatsapp || 
+                     booking.phone || 
+                     "";
+
+      var meetUrl = booking.videoCallUrl || 
+                    (booking.metadata && booking.metadata.videoCallUrl) || 
+                    data.videoCallUrl || 
+                    "https://meet.google.com/";
+
+      var startTime = booking.startTime || data.startTime || "";
+      var dataCall = "";
+      var horaCall = "";
+      if (startTime) {
+        try {
+          dataCall = startTime.split("T")[0];
+          horaCall = startTime.split("T")[1].substring(0, 5);
+        } catch(e) {}
+      }
+
+      var uid = booking.uid || data.uid || ("cal-" + Date.now());
+
+      return {
+        nome: nome.trim(),
+        email: email.trim(),
+        whatsapp: whatsapp.trim(),
+        data_call: dataCall || data.date || "",
+        hora_call: horaCall || data.time || "",
+        meet_link: meetUrl,
+        cal_uid: uid,
+        raw: d
+      };
+    }
+
+    var leadPendenteAtual = null;
+
+    function processarSucessoCalCom(eventDetail) {
+      console.log("🎉 Evento de Agendamento Cal.com recebido:", eventDetail);
+      
+      // Exibir banner de sucesso no topo
+      var successAlert = document.getElementById("booking-success-alert");
+      if (successAlert) {
+        successAlert.classList.remove("hidden");
+        successAlert.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      var extraido = extrairDadosCalCom(eventDetail);
+
+      var payloadLead = {
+        origem: "Campanha / Link Cal.com Embed (/agendar)",
+        nome: extraido.nome || (extraido.email ? extraido.email.split("@")[0] : ""),
+        email: extraido.email,
+        whatsapp: extraido.whatsapp,
+        data_call: extraido.data_call,
+        hora_call: extraido.hora_call,
+        meet_link: extraido.meet_link,
+        tipo_call: "Sessão Estratégica (30 min)",
+        cal_uid: extraido.cal_uid,
+        status: "agendado",
+        notas: "Lead realizou agendamento pela página /agendar.",
+        raw_data: extraido.raw
+      };
+
+      leadPendenteAtual = payloadLead;
+
+      // Se por algum motivo o Cal.com não repassou o nome, abrimos o modal amigável para garantir a identificação
+      if (!payloadLead.nome || payloadLead.nome === "Lead Campanha" || !payloadLead.whatsapp) {
+        document.getElementById("modal-cal-uid").value = payloadLead.cal_uid;
+        if (payloadLead.nome) document.getElementById("modal-lead-nome").value = payloadLead.nome;
+        if (payloadLead.whatsapp) document.getElementById("modal-lead-whatsapp").value = payloadLead.whatsapp;
+        document.getElementById("modal-confirmar-identificacao").classList.remove("hidden");
+      }
+
+      // Envia imediatamente para a API
+      salvarLeadNaAPI(payloadLead);
+    }
+
+    function salvarLeadNaAPI(payload) {
+      return fetch("/api/agendamentos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(result) {
+        console.log("💾 Lead salvo com sucesso no Mini CRM:", result);
+        return result;
+      })
+      .catch(function(err) {
+        console.warn("Aviso ao salvar lead na API:", err);
+        try {
+          var localLeads = JSON.parse(localStorage.getItem("guarnieri_leads_offline") || "[]");
+          localLeads.push(payload);
+          localStorage.setItem("guarnieri_leads_offline", JSON.stringify(localLeads));
+        } catch(e) {}
+      });
+    }
+
+    // Modal complementar se faltar nome
+    function salvarIdentificacaoComplementar(e) {
+      e.preventDefault();
+      var nomeDigitado = document.getElementById("modal-lead-nome").value.trim();
+      var zapDigitado = document.getElementById("modal-lead-whatsapp").value.trim();
+
+      if (leadPendenteAtual) {
+        leadPendenteAtual.nome = nomeDigitado;
+        leadPendenteAtual.whatsapp = zapDigitado;
+        salvarLeadNaAPI(leadPendenteAtual);
+      }
+
+      document.getElementById("modal-confirmar-identificacao").classList.add("hidden");
+    }
+
+    // Formulário de Solicitação de Horário Alternativo
+    function enviarHorarioAlternativo(e) {
+      e.preventDefault();
+      var btn = document.getElementById("btn-enviar-alt");
+      btn.disabled = true;
+      btn.innerHTML = "<span>Enviando solicitação...</span>";
+
+      var payloadAlt = {
+        origem: "Solicitação de Horário Alternativo",
+        nome: document.getElementById("alt-nome").value.trim(),
+        email: document.getElementById("alt-email").value.trim(),
+        whatsapp: document.getElementById("alt-whatsapp").value.trim(),
+        tema_livro: document.getElementById("alt-tema").value.trim(),
+        observacao_horario: document.getElementById("alt-observacao").value.trim(),
+        status: "horario_alternativo",
+        tipo_call: "Horário Personalizado Solicitado",
+        data_call: "",
+        hora_call: "",
+        meet_link: "",
+        notas: "Lead solicitou horário alternativo: " + document.getElementById("alt-observacao").value.trim()
+      };
+
+      salvarLeadNaAPI(payloadAlt).then(function() {
+        document.getElementById("form-horario-alternativo").classList.add("hidden");
+        document.getElementById("horario-alternativo-sucesso").classList.remove("hidden");
+        document.getElementById("secao-horario-alternativo").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    // 3. Listeners oficiais do Cal.com (Ambos: namespace e postMessage)
     Cal.ns.calleditora30min("on", {
       action: "bookingSuccessful",
       callback: function (event) {
-        console.log("🎉 Agendamento concluído com sucesso:", event);
-        
-        // Exibir banner de sucesso no topo
-        var successAlert = document.getElementById("booking-success-alert");
-        if (successAlert) {
-          successAlert.classList.remove("hidden");
-          successAlert.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-
-        // Extrai dados do payload do Cal.com
-        var bookingData = event && event.detail ? event.detail : {};
-        var data = bookingData.data || {};
-        var booking = bookingData.booking || {};
-
-        var payloadLead = {
-          origem: "Campanha / Link Cal.com Embed (/agendar)",
-          nome: data.name || booking.name || (data.attendees && data.attendees[0] ? data.attendees[0].name : "Lead Campanha"),
-          email: data.email || booking.email || (data.attendees && data.attendees[0] ? data.attendees[0].email : ""),
-          whatsapp: data.phone || data.whatsapp || (booking.responses ? booking.responses.phone : ""),
-          data_call: data.date || (booking.startTime ? booking.startTime.split("T")[0] : ""),
-          hora_call: data.time || (booking.startTime ? booking.startTime.split("T")[1].substring(0, 5) : ""),
-          meet_link: booking.videoCallUrl || "https://meet.google.com/",
-          tipo_call: "Sessão Estratégica (30 min)",
-          cal_uid: booking.uid || "cal-" + Date.now(),
-          status: "agendado",
-          notas: "Lead realizou agendamento pela página /agendar."
-        };
-
-        // Dispara envio para a API de agendamentos (salva no arquivo JSON do CRM)
-        fetch("/api/agendamentos", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payloadLead)
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(result) {
-          console.log("💾 Lead salvo com sucesso no Mini CRM da equipe:", result);
-        })
-        .catch(function(err) {
-          console.warn("Aviso ao registrar lead na API:", err);
-          // Fallback resiliente no localStorage do navegador para não perder nada
-          try {
-            var localLeads = JSON.parse(localStorage.getItem("guarnieri_leads_offline") || "[]");
-            localLeads.push(payloadLead);
-            localStorage.setItem("guarnieri_leads_offline", JSON.stringify(localLeads));
-          } catch(e) {}
-        });
+        processarSucessoCalCom(event && event.detail ? event.detail : {});
       }
+    });
+
+    window.addEventListener("message", function(e) {
+      try {
+        var msgData = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+        if (msgData && (msgData.action === "bookingSuccessful" || (msgData.type === "__cal__" && msgData.data && msgData.data.action === "bookingSuccessful"))) {
+          processarSucessoCalCom(msgData.data || msgData);
+        }
+      } catch(err) {}
     });
   </script>
 </body>

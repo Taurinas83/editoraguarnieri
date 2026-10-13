@@ -119,7 +119,28 @@ function mockRes() {
   await agendamentosHandler(reqPut, resPut);
   assert(resPut.statusCode === 200 && resPut.bodyData.lead.status === 'fechado', 'Atualiza status e anotações via PUT/PATCH');
 
-  // 4.5 Teste de remoção
+  // 4.5 Teste de Horário Alternativo Solicitado
+  const reqHorarioAlt = {
+    method: 'POST',
+    headers: {},
+    query: {},
+    body: {
+      origem: 'Solicitação de Horário Alternativo',
+      nome: 'Diretor Roberto Mendonça',
+      email: 'roberto@mendonca.com',
+      whatsapp: '+55 21 97777-6666',
+      observacao_horario: 'Disponível apenas terças-feiras após as 18h30',
+      tema_livro: 'Governança Corporativa'
+    }
+  };
+  const resHorarioAlt = mockRes();
+  await agendamentosHandler(reqHorarioAlt, resHorarioAlt);
+  assert(resHorarioAlt.statusCode === 201 && 
+         resHorarioAlt.bodyData.lead.status === 'horario_alternativo' && 
+         resHorarioAlt.bodyData.lead.observacao_horario.includes('18h30'), 
+         'Cria lead com status horario_alternativo e preserva observacao_horario');
+
+  // 4.6 Teste de remoção
   const reqDel = {
     method: 'DELETE',
     headers: { 'x-crm-token': 'guarnieri2026' },

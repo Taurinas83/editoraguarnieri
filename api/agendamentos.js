@@ -73,13 +73,45 @@ module.exports = async (req, res) => {
       // Tratamento especial para Webhook oficial do Cal.com
       if (body.triggerEvent && body.payload) {
         const p = body.payload;
+        const extrairNome = (obj) => {
+          if (!obj) return '';
+          return obj.nome || obj.name || 
+            (obj.attendees && obj.attendees[0] && obj.attendees[0].name) ||
+            (obj.responses && (obj.responses.name || obj.responses.name_attendee)) ||
+            (obj.booking && obj.booking.attendees && obj.booking.attendees[0] && obj.booking.attendees[0].name) ||
+            (obj.booking && obj.booking.responses && (obj.booking.responses.name || obj.booking.responses.name_attendee)) ||
+            '';
+        };
+
+        const extrairEmail = (obj) => {
+          if (!obj) return '';
+          return obj.email || 
+            (obj.attendees && obj.attendees[0] && obj.attendees[0].email) ||
+            (obj.responses && obj.responses.email) ||
+            (obj.booking && obj.booking.attendees && obj.booking.attendees[0] && obj.booking.attendees[0].email) ||
+            (obj.booking && obj.booking.responses && obj.booking.responses.email) ||
+            '';
+        };
+
+        const extrairTelefone = (obj) => {
+          if (!obj) return '';
+          return obj.whatsapp || obj.phone || 
+            (obj.responses && (obj.responses.phone || obj.responses.whatsapp)) ||
+            (obj.booking && obj.booking.responses && (obj.booking.responses.phone || obj.booking.responses.whatsapp)) ||
+            '';
+        };
+
+        const nomeDetectado = extrairNome(body) || extrairNome(p);
+        const emailDetectado = extrairEmail(body) || extrairEmail(p);
+        const telefoneDetectado = extrairTelefone(body) || extrairTelefone(p);
+
         const novoWebhookLead = {
           id: 'cal-' + (p.uid || Date.now()),
           origem: 'Cal.com Webhook',
           data_criacao: new Date().toISOString(),
-          nome: (p.attendees && p.attendees[0] && p.attendees[0].name) || p.name || 'Lead Cal.com',
-          email: (p.attendees && p.attendees[0] && p.attendees[0].email) || p.email || '',
-          whatsapp: p.responses?.phone || p.responses?.whatsapp || '',
+          nome: nomeDetectado || (emailDetectado ? emailDetectado.split('@')[0] : 'Lead Cal.com'),
+          email: emailDetectado,
+          whatsapp: telefoneDetectado,
           data_call: p.startTime ? p.startTime.split('T')[0] : '',
           hora_call: p.startTime ? p.startTime.split('T')[1].substring(0, 5) : '',
           meet_link: p.videoCallUrl || p.metadata?.videoCallUrl || 'https://meet.google.com/',
@@ -87,7 +119,8 @@ module.exports = async (req, res) => {
           status: 'agendado',
           tema_livro: p.responses?.notes || p.description || '',
           notas: 'Agendado automaticamente via Cal.com Webhook.',
-          cal_uid: p.uid || ''
+          cal_uid: p.uid || '',
+          raw_data: p
         };
 
         // Evita duplicatas pelo uid
@@ -102,28 +135,57 @@ module.exports = async (req, res) => {
         return res.status(200).json({ success: true, lead: novoWebhookLead });
       }
 
-      // Recebimento padrão (via JavaScript listener do embed ou manual do CRM)
+      // Recebimento padrão (via JavaScript listener do embed, formulário de horário alternativo ou manual)
+      const extrairNome = (obj) => {
+        if (!obj) return '';
+        return obj.nome || obj.name || 
+          (obj.attendees && obj.attendees[0] && obj.attendees[0].name) ||
+          (obj.responses && (obj.responses.name || obj.responses.name_attendee)) ||
+          '';
+      };
+
+      const extrairEmail = (obj) => {
+        if (!obj) return '';
+        return obj.email || 
+          (obj.attendees && obj.attendees[0] && obj.attendees[0].email) ||
+          (obj.responses && obj.responses.email) ||
+          '';
+      };
+
+      const extrairTelefone = (obj) => {
+        if (!obj) return '';
+        return obj.whatsapp || obj.phone || 
+          (obj.responses && (obj.responses.phone || obj.responses.whatsapp)) ||
+          '';
+      };
+
+      const nomeDetectado = extrairNome(body);
+      const emailDetectado = extrairEmail(body);
+      const telefoneDetectado = extrairTelefone(body);
+
       const novoAgendamento = {
         id: body.id || 'lead-' + Date.now(),
-        origem: body.origem || 'Cal.com Embed',
+        origem: body.origem || (body.observacao_horario ? 'Solicitação de Horário Alternativo' : 'Cal.com Embed'),
         data_criacao: new Date().toISOString(),
-        nome: body.nome || 'Visitante',
-        email: body.email || '',
-        whatsapp: body.whatsapp || '',
+        nome: nomeDetectado || (emailDetectado ? emailDetectado.split('@')[0] : 'Lead a Identificar'),
+        email: emailDetectado || body.email || '',
+        whatsapp: telefoneDetectado || body.whatsapp || '',
         data_call: body.data_call || '',
         hora_call: body.hora_call || '',
-        meet_link: body.meet_link || 'https://meet.google.com/',
-        tipo_call: body.tipo_call || 'Sessão Estratégica Confidencial (30 min)',
-        status: body.status || 'agendado',
+        meet_link: body.meet_link || (body.observacao_horario ? '' : 'https://meet.google.com/'),
+        tipo_call: body.tipo_call || (body.observacao_horario ? 'Horário Personalizado Solicitado' : 'Sessão Estratégica (30 min)'),
+        status: body.status || (body.observacao_horario ? 'horario_alternativo' : 'agendado'),
         tema_livro: body.tema_livro || '',
-        notas: body.notas || '',
-        cal_uid: body.cal_uid || ''
+        observacao_horario: body.observacao_horario || '',
+        notas: body.notas || (body.observacao_horario ? `Horário solicitado pelo lead: ${body.observacao_horario}` : ''),
+        cal_uid: body.cal_uid || '',
+        raw_data: body.raw_data || null
       };
 
       agendamentos.unshift(novoAgendamento);
       saveAgendamentos(agendamentos);
 
-      console.log('📅 Novo agendamento registrado:', novoAgendamento.nome, novoAgendamento.data_call, novoAgendamento.hora_call);
+      console.log('📅 Novo agendamento registrado:', novoAgendamento.nome, novoAgendamento.status, novoAgendamento.data_call);
 
       return res.status(201).json({
         success: true,
@@ -143,7 +205,7 @@ module.exports = async (req, res) => {
 
     try {
       const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-      const { id, status, notas, tema_livro, whatsapp, email, data_call, hora_call } = body;
+      const { id, nome, status, notas, tema_livro, whatsapp, email, data_call, hora_call } = body;
 
       if (!id) {
         return res.status(400).json({ error: 'ID do agendamento é obrigatório.' });
@@ -156,6 +218,7 @@ module.exports = async (req, res) => {
         return res.status(404).json({ error: 'Agendamento não encontrado.' });
       }
 
+      if (nome !== undefined) agendamentos[index].nome = nome;
       if (status !== undefined) agendamentos[index].status = status;
       if (notas !== undefined) agendamentos[index].notas = notas;
       if (tema_livro !== undefined) agendamentos[index].tema_livro = tema_livro;
@@ -163,6 +226,7 @@ module.exports = async (req, res) => {
       if (email !== undefined) agendamentos[index].email = email;
       if (data_call !== undefined) agendamentos[index].data_call = data_call;
       if (hora_call !== undefined) agendamentos[index].hora_call = hora_call;
+      if (body.observacao_horario !== undefined) agendamentos[index].observacao_horario = body.observacao_horario;
       agendamentos[index].ultima_atualizacao = new Date().toISOString();
 
       saveAgendamentos(agendamentos);
