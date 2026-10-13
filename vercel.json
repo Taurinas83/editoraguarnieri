@@ -11,6 +11,18 @@
       "dest": "/api/contato.js"
     },
     {
+      "src": "/api/agendamentos",
+      "dest": "/api/agendamentos.js"
+    },
+    {
+      "src": "/agendar",
+      "dest": "/agendar.html"
+    },
+    {
+      "src": "/crm",
+      "dest": "/crm.html"
+    },
+    {
       "src": "/blog",
       "dest": "/blog.html"
     },

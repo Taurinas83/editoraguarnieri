@@ -123,9 +123,48 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Roteamento de Arquivos Estáticos
+  // API: /api/agendamentos (Mini CRM & Webhook Cal.com)
+  if (pathname === '/api/agendamentos') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        req.body = body ? JSON.parse(body) : {};
+      } catch (e) {
+        req.body = body;
+      }
+      req.query = parsedUrl.query || {};
+      res.status = function(code) {
+        this.statusCode = code;
+        return this;
+      };
+      res.json = function(data) {
+        this.setHeader('Content-Type', 'application/json; charset=utf-8');
+        this.end(JSON.stringify(data));
+      };
+
+      try {
+        const agendamentosHandler = require('./api/agendamentos');
+        agendamentosHandler(req, res);
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // Roteamento de Arquivos Estáticos & Páginas Limpas
   if (pathname === '/' || pathname === '') {
     pathname = '/index.html';
+  } else if (pathname === '/agendar') {
+    pathname = '/agendar.html';
+  } else if (pathname === '/crm') {
+    pathname = '/crm.html';
+  } else if (pathname === '/blog') {
+    pathname = '/blog.html';
+  } else if (pathname === '/post') {
+    pathname = '/post.html';
   }
 
   const safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
@@ -159,6 +198,8 @@ function startServer(portToTry) {
     console.log(`[Editora Guarnieri] Servidor ativo em http://localhost:${portToTry}`);
     console.log(`Páginas disponíveis:`);
     console.log(` - Landing Page: http://localhost:${portToTry}/index.html`);
+    console.log(` - Agendar Call: http://localhost:${portToTry}/agendar`);
+    console.log(` - Mini CRM:     http://localhost:${portToTry}/crm`);
     console.log(` - Blog:         http://localhost:${portToTry}/blog.html`);
     console.log(` - Artigo:       http://localhost:${portToTry}/post.html`);
   });

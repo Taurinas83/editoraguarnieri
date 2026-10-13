@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal da Equipe | Mini CRM de Agendamentos - Editora Guarnieri</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            'canvas-off-white': '#FAF7F2',
+            'bordeaux-deep': '#6B1F2E',
+            'bordeaux-wine': '#4A1520',
+            'charcoal-ink': '#2B2424',
+            'warm-gray': '#6B5E5E',
+            'aged-gold': '#B8935A',
+            'surface-cream': '#F2ECE2',
+            'border-subtle': '#8B3A47'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Montserrat"', 'system-ui', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #2B2424;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #E8DEC8;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#FAF7F2] text-[#2B2424] antialiased">
+
+  <!-- ================= TELA DE LOGIN DA EQUIPE ================= -->
+  <div id="login-screen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full rounded-2xl border border-[#E8DEC8] p-8 shadow-xl text-center">
+      <div class="w-14 h-14 rounded-full bg-[#4A1520] text-[#B8935A] flex items-center justify-center font-bold text-2xl mx-auto mb-4 border border-[#B8935A]/30">
+        G
+      </div>
+      <h1 class="text-2xl font-bold text-[#4A1520]">Portal da Equipe</h1>
+      <p class="text-xs text-[#6B5E5E] mt-1 mb-6">Mini CRM & Gestão de Calls Estratégicas</p>
+
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-semibold text-[#4A1520] uppercase tracking-wider mb-1.5">Senha de Acesso da Equipe</label>
+          <input 
+            type="password" 
+            id="login-password" 
+            required 
+            placeholder="Digite a senha da equipe"
+            class="w-full px-4 py-2.5 rounded-xl border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none text-sm transition-all"
+          >
+          <p class="text-[11px] text-[#8C7A7A] mt-1.5">Senha padrão inicial: <code class="bg-[#F2ECE2] px-1 py-0.5 rounded text-[#4A1520]">guarnieri2026</code></p>
+        </div>
+
+        <div id="login-error" class="hidden text-xs text-rose-700 bg-rose-50 border border-rose-200 p-2.5 rounded-lg">
+          Senha incorreta. Verifique e tente novamente.
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-3 bg-[#4A1520] hover:bg-[#6B1F2E] text-[#FAF7F2] font-semibold rounded-xl text-sm transition-colors shadow-md flex items-center justify-center gap-2"
+        >
+          <span>Entrar no Painel</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-[#F2ECE2] text-[11px] text-[#A39393]">
+        Ambiente restrito e confidencial • Editora Guarnieri
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PAINEL DO CRM (APÓS LOGIN) ================= -->
+  <div id="crm-dashboard" class="hidden min-h-screen flex flex-col">
+    
+    <!-- Topo da Aplicação -->
+    <header class="bg-[#4A1520] text-white border-b border-[#6B1F2E] sticky top-0 z-30 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-[#B8935A] text-[#4A1520] flex items-center justify-center font-bold text-lg shadow-sm">
+            G
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold tracking-tight text-white">EDITORA GUARNIERI</span>
+              <span class="text-[10px] bg-[#B8935A]/30 text-[#E8DEC8] px-2 py-0.5 rounded-full font-medium border border-[#B8935A]/40">CRM Equipe</span>
+            </div>
+            <p class="text-[11px] text-[#D5C9B3]">Controle de Sessões Estratégicas & Leads</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="/agendar" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#E8DEC8] hover:text-white px-3 py-1.5 rounded-lg border border-[#B8935A]/40 hover:bg-[#6B1F2E] transition-colors">
+            <svg class="w-3.5 h-3.5 text-[#B8935A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Ver Página /agendar
+          </a>
+
+          <button onclick="openModalNovoLead()" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#B8935A] hover:bg-[#C9A26A] text-[#2B2424] px-3.5 py-1.5 rounded-lg transition-colors shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span>Novo Agendamento</span>
+          </button>
+
+          <button onclick="exportarCSV()" title="Exportar dados para Excel/CSV" class="text-xs bg-[#6B1F2E] hover:bg-[#8B3A47] text-white p-2 rounded-lg transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          </button>
+
+          <button onclick="handleLogout()" title="Sair do CRM" class="text-xs text-[#E8DEC8] hover:text-white p-2 rounded-lg hover:bg-[#6B1F2E] transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Corpo do Dashboard -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+
+      <!-- CARDS DE MÉTRICAS (KPIs) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="bg-white p-4 rounded-xl border border-[#E8DEC8] shadow-sm">
+          <span class="text-[11px] font-bold text-[#6B5E5E] uppercase tracking-wider block">Total de Calls</span>
+          <div class="flex items-baseline justify-between mt-1">
+            <span id="kpi-total" class="text-2xl sm:text-3xl font-extrabold text-[#4A1520]">0</span>
+            <span class="text-xs text-[#B8935A] font-semibold">100% Leads</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-[#E8DEC8] shadow-sm">
+          <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wider block">Agendadas / Futuras</span>
+          <div class="flex items-baseline justify-between mt-1">
+            <span id="kpi-agendados" class="text-2xl sm:text-3xl font-extrabold text-amber-600">0</span>
+            <span class="text-[11px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">Aguardando</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-[#E8DEC8] shadow-sm">
+          <span class="text-[11px] font-bold text-blue-700 uppercase tracking-wider block">Realizadas / Negociação</span>
+          <div class="flex items-baseline justify-between mt-1">
+            <span id="kpi-negociacao" class="text-2xl sm:text-3xl font-extrabold text-blue-600">0</span>
+            <span class="text-[11px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full font-medium">Follow-up</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-[#E8DEC8] shadow-sm">
+          <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block">Fechados / Contrato</span>
+          <div class="flex items-baseline justify-between mt-1">
+            <span id="kpi-fechados" class="text-2xl sm:text-3xl font-extrabold text-emerald-600">0</span>
+            <span class="text-[11px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full font-medium">Sucesso</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARRA DE FILTROS E BUSCA -->
+      <div class="bg-white p-4 rounded-xl border border-[#E8DEC8] shadow-sm flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        
+        <!-- Campo de Pesquisa -->
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 text-[#8C7A7A] absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input 
+            type="text" 
+            id="filtro-busca" 
+            oninput="filtrarLeads()" 
+            placeholder="Buscar por nome, e-mail, telefone ou tema do livro..."
+            class="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] focus:ring-1 focus:ring-[#4A1520] outline-none"
+          >
+        </div>
+
+        <!-- Filtro por Status -->
+        <div class="flex items-center gap-2">
+          <select 
+            id="filtro-status" 
+            onchange="filtrarLeads()" 
+            class="text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none bg-white text-[#2B2424]"
+          >
+            <option value="todos">Todos os Status</option>
+            <option value="agendado">📅 Agendado</option>
+            <option value="confirmado">✅ Confirmado</option>
+            <option value="realizado">💬 Realizado (Em Negociação)</option>
+            <option value="fechado">🏆 Fechado (Contrato Assinado)</option>
+            <option value="remarcar">🔄 Remarcar / No-Show</option>
+            <option value="cancelado">❌ Cancelado</option>
+          </select>
+
+          <button onclick="carregarAgendamentos()" title="Recarregar" class="p-2 border border-[#D5C9B3] hover:border-[#4A1520] rounded-lg text-[#6B5E5E] hover:text-[#4A1520] transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- TABELA DE LEADS & AGENDAMENTOS -->
+      <div class="bg-white rounded-xl border border-[#E8DEC8] shadow-sm overflow-hidden">
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-[#F2ECE2] text-[#4A1520] uppercase text-[11px] font-bold tracking-wider border-b border-[#E8DEC8]">
+                <th class="py-3 px-4">Autor / Lead</th>
+                <th class="py-3 px-4">Data & Horário</th>
+                <th class="py-3 px-4">Google Meet</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4">Contato (WhatsApp)</th>
+                <th class="py-3 px-4">Tema / Notas</th>
+                <th class="py-3 px-4 text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-leads-body" class="divide-y divide-[#F2ECE2]">
+              <tr>
+                <td colspan="7" class="py-8 text-center text-[#8C7A7A]">
+                  Carregando agendamentos...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="empty-state" class="hidden p-8 text-center text-[#8C7A7A]">
+          Nenhum agendamento encontrado com os filtros aplicados.
+        </div>
+      </div>
+
+      <!-- INFORMAÇÕES DE INTEGRAÇÃO & WEBHOOK CAL.COM -->
+      <div class="bg-white/80 p-5 rounded-xl border border-[#E8DEC8] text-xs text-[#6B5E5E] space-y-2">
+        <div class="flex items-center justify-between">
+          <h4 class="font-bold text-[#4A1520] text-sm flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            Integração Cal.com & Webhook Automático
+          </h4>
+          <span class="text-[11px] text-[#8C7A7A]">Endpoint pronto para produção</span>
+        </div>
+        <p>
+          Qualquer agendamento feito na página <code class="bg-[#F2ECE2] text-[#4A1520] px-1.5 py-0.5 rounded font-mono">/agendar</code> alimenta esta tabela instantaneamente. Se quiser conectar o webhook oficial do Cal.com diretamente pela sua conta no Cal.com (Settings > Webhooks), use a URL:
+        </p>
+        <div class="flex items-center gap-2 max-w-xl">
+          <input 
+            type="text" 
+            readonly 
+            value="https://editoraguarnieri.com.br/api/agendamentos" 
+            id="webhook-url-input"
+            class="bg-[#F2ECE2] border border-[#D5C9B3] text-[#2B2424] font-mono text-[11px] px-3 py-1.5 rounded-lg flex-1 outline-none select-all"
+          >
+          <button onclick="copiarWebhookUrl()" class="px-3 py-1.5 bg-[#4A1520] text-white rounded-lg text-xs hover:bg-[#6B1F2E] transition-colors">
+            Copiar URL
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL: NOVO AGENDAMENTO MANUAL / EDIÇÃO ================= -->
+  <div id="modal-lead" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-2xl border border-[#E8DEC8] p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between border-b border-[#F2ECE2] pb-3 mb-4">
+        <h3 id="modal-titulo" class="text-base font-bold text-[#4A1520]">Novo Agendamento Estratégico</h3>
+        <button onclick="fecharModalLead()" class="text-[#8C7A7A] hover:text-[#4A1520] text-lg font-bold">✕</button>
+      </div>
+
+      <form id="form-modal-lead" onsubmit="salvarLeadModal(event)" class="space-y-3.5 text-xs sm:text-sm">
+        <input type="hidden" id="modal-lead-id">
+
+        <div>
+          <label class="block font-semibold text-[#4A1520] mb-1">Nome do Autor / Lead *</label>
+          <input type="text" id="modal-nome" required placeholder="Ex: Dr. Roberto Alencar" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">E-mail *</label>
+            <input type="email" id="modal-email" required placeholder="roberto@empresa.com" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">WhatsApp / Telefone *</label>
+            <input type="text" id="modal-whatsapp" required placeholder="+55 11 98888-7777" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">Data da Call *</label>
+            <input type="date" id="modal-data" required class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-[#4A1520] mb-1">Horário (Brasília) *</label>
+            <input type="time" id="modal-hora" required class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-[#4A1520] mb-1">Link do Google Meet</label>
+          <input type="url" id="modal-meet" placeholder="https://meet.google.com/xxx-yyyy-zzz" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+        </div>
+
+        <div>
+          <label class="block font-semibold text-[#4A1520] mb-1">Status</label>
+          <select id="modal-status" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none bg-white">
+            <option value="agendado">📅 Agendado</option>
+            <option value="confirmado">✅ Confirmado</option>
+            <option value="realizado">💬 Realizado (Em Negociação)</option>
+            <option value="fechado">🏆 Fechado (Contrato Assinado)</option>
+            <option value="remarcar">🔄 Remarcar / No-Show</option>
+            <option value="cancelado">❌ Cancelado</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-[#4A1520] mb-1">Tema do Livro / Tese</label>
+          <input type="text" id="modal-tema" placeholder="Ex: Gestão de Crise em Empresas Familiares" class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none">
+        </div>
+
+        <div>
+          <label class="block font-semibold text-[#4A1520] mb-1">Notas Internas da Equipe</label>
+          <textarea id="modal-notas" rows="3" placeholder="Anotações sobre a conversa, perfil do autor, objeções, próximos passos..." class="w-full px-3 py-2 rounded-lg border border-[#D5C9B3] focus:border-[#4A1520] outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-[#F2ECE2]">
+          <button type="button" onclick="fecharModalLead()" class="px-4 py-2 text-xs font-semibold text-[#6B5E5E] hover:text-[#4A1520] rounded-lg">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2 text-xs font-semibold bg-[#4A1520] hover:bg-[#6B1F2E] text-white rounded-lg shadow-sm transition-colors">
+            Salvar Agendamento
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT DO MINI CRM -->
+  <script>
+    const CRM_AUTH_KEY = "guarnieri_crm_token";
+    let tokenAtual = localStorage.getItem(CRM_AUTH_KEY) || "";
+    let listaLeads = [];
+
+    // Inicialização ao carregar a página
+    window.addEventListener("DOMContentLoaded", () => {
+      if (tokenAtual) {
+        testarTokenEEntrar(tokenAtual);
+      } else {
+        mostrarTelaLogin();
+      }
+    });
+
+    function mostrarTelaLogin() {
+      document.getElementById("login-screen").classList.remove("hidden");
+      document.getElementById("crm-dashboard").classList.add("hidden");
+    }
+
+    function mostrarDashboard() {
+      document.getElementById("login-screen").classList.add("hidden");
+      document.getElementById("crm-dashboard").classList.remove("hidden");
+      carregarAgendamentos();
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const inputPass = document.getElementById("login-password").value.trim();
+      const errorDiv = document.getElementById("login-error");
+      errorDiv.classList.add("hidden");
+
+      testarTokenEEntrar(inputPass, (sucesso) => {
+        if (!sucesso) {
+          errorDiv.classList.remove("hidden");
+        }
+      });
+    }
+
+    function testarTokenEEntrar(token, cb) {
+      fetch("/api/agendamentos?action=check-auth&token=" + encodeURIComponent(token), {
+        headers: { "x-crm-token": token }
+      })
+      .then(res => {
+        if (res.ok) {
+          tokenAtual = token;
+          localStorage.setItem(CRM_AUTH_KEY, token);
+          mostrarDashboard();
+          if (cb) cb(true);
+        } else {
+          // Fallback para senha local padrão se API ainda estiver sincronizando
+          if (token === "guarnieri2026") {
+            tokenAtual = token;
+            localStorage.setItem(CRM_AUTH_KEY, token);
+            mostrarDashboard();
+            if (cb) cb(true);
+          } else {
+            if (cb) cb(false);
+          }
+        }
+      })
+      .catch(() => {
+        // Fallback offline / local
+        if (token === "guarnieri2026") {
+          tokenAtual = token;
+          localStorage.setItem(CRM_AUTH_KEY, token);
+          mostrarDashboard();
+          if (cb) cb(true);
+        } else {
+          if (cb) cb(false);
+        }
+      });
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(CRM_AUTH_KEY);
+      tokenAtual = "";
+      mostrarTelaLogin();
+    }
+
+    // Carregar agendamentos da API
+    function carregarAgendamentos() {
+      fetch("/api/agendamentos", {
+        headers: { "x-crm-token": tokenAtual }
+      })
+      .then(res => res.json())
+      .then(dados => {
+        if (Array.isArray(dados)) {
+          listaLeads = dados;
+          renderizarTabela(listaLeads);
+          atualizarKPIs(listaLeads);
+        }
+      })
+      .catch(err => {
+        console.warn("Aviso ao carregar dados remotos:", err);
+        // Tenta carregar dados em cache local se houver
+        const backup = localStorage.getItem("guarnieri_leads_offline");
+        if (backup) {
+          listaLeads = JSON.parse(backup);
+          renderizarTabela(listaLeads);
+          atualizarKPIs(listaLeads);
+        }
+      });
+    }
+
+    // Renderizar tabela de leads
+    function renderizarTabela(leads) {
+      const tbody = document.getElementById("tabela-leads-body");
+      const emptyState = document.getElementById("empty-state");
+
+      if (!leads || leads.length === 0) {
+        tbody.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+
+      tbody.innerHTML = leads.map(lead => {
+        const statusConfig = getStatusBadge(lead.status);
+        const zapLink = formatarLinkWhatsApp(lead.whatsapp, lead.nome, lead.data_call, lead.hora_call);
+        const dataFormatada = formatarData(lead.data_call, lead.hora_call);
+        const meetBtn = lead.meet_link ? `
+          <a href="${lead.meet_link}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#F2ECE2] hover:bg-[#E8DEC8] text-[#4A1520] font-semibold text-xs border border-[#D5C9B3] transition-colors">
+            <svg class="w-3.5 h-3.5 text-rose-700" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            Entrar Meet
+          </a>
+        ` : `<span class="text-xs text-[#8C7A7A]">-</span>`;
+
+        return `
+          <tr class="hover:bg-[#FAF7F2] transition-colors">
+            <td class="py-3 px-4">
+              <div class="font-bold text-[#4A1520]">${escapeHTML(lead.nome || "Lead Sem Nome")}</div>
+              <div class="text-[11px] text-[#6B5E5E]">${escapeHTML(lead.email || "")}</div>
+              <div class="text-[10px] text-[#8C7A7A] mt-0.5">${lead.origem || "Cal.com"}</div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-semibold text-[#2B2424]">${dataFormatada}</div>
+              <div class="text-[11px] text-[#B8935A] font-medium">${escapeHTML(lead.tipo_call || "Sessão 30 min")}</div>
+            </td>
+            <td class="py-3 px-4">
+              ${meetBtn}
+            </td>
+            <td class="py-3 px-4">
+              <select onchange="atualizarStatusLead('${lead.id}', this.value)" class="text-xs px-2.5 py-1 rounded-full font-semibold border ${statusConfig.class} outline-none cursor-pointer">
+                <option value="agendado" ${lead.status === 'agendado' ? 'selected' : ''}>📅 Agendado</option>
+                <option value="confirmado" ${lead.status === 'confirmado' ? 'selected' : ''}>✅ Confirmado</option>
+                <option value="realizado" ${lead.status === 'realizado' ? 'selected' : ''}>💬 Realizado</option>
+                <option value="fechado" ${lead.status === 'fechado' ? 'selected' : ''}>🏆 Fechado</option>
+                <option value="remarcar" ${lead.status === 'remarcar' ? 'selected' : ''}>🔄 Remarcar</option>
+                <option value="cancelado" ${lead.status === 'cancelado' ? 'selected' : ''}>❌ Cancelado</option>
+              </select>
+            </td>
+            <td class="py-3 px-4">
+              ${lead.whatsapp ? `
+                <a href="${zapLink}" target="_blank" class="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-2 py-1 rounded text-xs font-semibold transition-colors">
+                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.45 0.742.966 1.202.664.592 1.224.776 1.397.863.173.086.274.072.375-.044.101-.115.433-.505.549-.679.116-.173.231-.145.39-.086.159.058 1.01.477 1.184.564.173.086.289.13.332.202.043.072.043.419-.101.824z"/></svg>
+                  ${escapeHTML(lead.whatsapp)}
+                </a>
+              ` : `<span class="text-[#8C7A7A]">-</span>`}
+            </td>
+            <td class="py-3 px-4 max-w-xs">
+              <div class="font-medium text-[#4A1520] truncate" title="${escapeHTML(lead.tema_livro || "")}">${escapeHTML(lead.tema_livro || "Tema a definir")}</div>
+              <div class="text-[11px] text-[#6B5E5E] truncate" title="${escapeHTML(lead.notas || "")}">${escapeHTML(lead.notas || "Sem anotações")}</div>
+            </td>
+            <td class="py-3 px-4 text-center">
+              <div class="flex items-center justify-center gap-1.5">
+                <button onclick="editarLead('${lead.id}')" title="Editar Lead" class="p-1.5 text-[#6B5E5E] hover:text-[#4A1520] hover:bg-[#F2ECE2] rounded transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                </button>
+                <button onclick="excluirLead('${lead.id}')" title="Excluir" class="p-1.5 text-rose-600 hover:text-rose-800 hover:bg-rose-50 rounded transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Status Badges
+    function getStatusBadge(status) {
+      switch(status) {
+        case "confirmado":
+          return { class: "bg-emerald-50 text-emerald-800 border-emerald-300" };
+        case "realizado":
+          return { class: "bg-blue-50 text-blue-800 border-blue-300" };
+        case "fechado":
+          return { class: "bg-purple-50 text-purple-800 border-purple-300" };
+        case "remarcar":
+          return { class: "bg-amber-50 text-amber-800 border-amber-300" };
+        case "cancelado":
+          return { class: "bg-rose-50 text-rose-800 border-rose-300" };
+        default:
+          return { class: "bg-amber-50 text-amber-800 border-amber-300" };
+      }
+    }
+
+    // Atualização dos KPIs
+    function atualizarKPIs(leads) {
+      document.getElementById("kpi-total").innerText = leads.length;
+      document.getElementById("kpi-agendados").innerText = leads.filter(l => l.status === "agendado" || l.status === "confirmado").length;
+      document.getElementById("kpi-negociacao").innerText = leads.filter(l => l.status === "realizado").length;
+      document.getElementById("kpi-fechados").innerText = leads.filter(l => l.status === "fechado").length;
+    }
+
+    // Filtrar Leads por Texto e Status
+    function filtrarLeads() {
+      const q = document.getElementById("filtro-busca").value.toLowerCase();
+      const statusFiltro = document.getElementById("filtro-status").value;
+
+      const filtrados = listaLeads.filter(lead => {
+        const matchesQuery = !q || 
+          (lead.nome && lead.nome.toLowerCase().includes(q)) ||
+          (lead.email && lead.email.toLowerCase().includes(q)) ||
+          (lead.whatsapp && lead.whatsapp.toLowerCase().includes(q)) ||
+          (lead.tema_livro && lead.tema_livro.toLowerCase().includes(q));
+
+        const matchesStatus = statusFiltro === "todos" || lead.status === statusFiltro;
+
+        return matchesQuery && matchesStatus;
+      });
+
+      renderizarTabela(filtrados);
+    }
+
+    // Alterar Status via Dropdown inline
+    function atualizarStatusLead(id, novoStatus) {
+      fetch("/api/agendamentos", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-crm-token": tokenAtual
+        },
+        body: JSON.stringify({ id: id, status: novoStatus })
+      })
+      .then(res => res.json())
+      .then(() => {
+        const item = listaLeads.find(l => l.id === id);
+        if (item) item.status = novoStatus;
+        atualizarKPIs(listaLeads);
+      })
+      .catch(err => console.error("Erro ao atualizar status:", err));
+    }
+
+    // Modal de Novo / Editar Lead
+    function openModalNovoLead() {
+      document.getElementById("form-modal-lead").reset();
+      document.getElementById("modal-lead-id").value = "";
+      document.getElementById("modal-titulo").innerText = "Novo Agendamento Estratégico";
+      document.getElementById("modal-data").value = new Date().toISOString().split("T")[0];
+      document.getElementById("modal-hora").value = "15:00";
+      document.getElementById("modal-meet").value = "https://meet.google.com/new";
+      document.getElementById("modal-lead").classList.remove("hidden");
+    }
+
+    function editarLead(id) {
+      const lead = listaLeads.find(l => l.id === id);
+      if (!lead) return;
+
+      document.getElementById("modal-lead-id").value = lead.id;
+      document.getElementById("modal-titulo").innerText = "Editar Agendamento: " + lead.nome;
+      document.getElementById("modal-nome").value = lead.nome || "";
+      document.getElementById("modal-email").value = lead.email || "";
+      document.getElementById("modal-whatsapp").value = lead.whatsapp || "";
+      document.getElementById("modal-data").value = lead.data_call || "";
+      document.getElementById("modal-hora").value = lead.hora_call || "";
+      document.getElementById("modal-meet").value = lead.meet_link || "";
+      document.getElementById("modal-status").value = lead.status || "agendado";
+      document.getElementById("modal-tema").value = lead.tema_livro || "";
+      document.getElementById("modal-notas").value = lead.notas || "";
+
+      document.getElementById("modal-lead").classList.remove("hidden");
+    }
+
+    function fecharModalLead() {
+      document.getElementById("modal-lead").classList.add("hidden");
+    }
+
+    function salvarLeadModal(e) {
+      e.preventDefault();
+      const id = document.getElementById("modal-lead-id").value;
+      const payload = {
+        id: id || ("lead-" + Date.now()),
+        nome: document.getElementById("modal-nome").value,
+        email: document.getElementById("modal-email").value,
+        whatsapp: document.getElementById("modal-whatsapp").value,
+        data_call: document.getElementById("modal-data").value,
+        hora_call: document.getElementById("modal-hora").value,
+        meet_link: document.getElementById("modal-meet").value,
+        status: document.getElementById("modal-status").value,
+        tema_livro: document.getElementById("modal-tema").value,
+        notas: document.getElementById("modal-notas").value,
+        origem: id ? undefined : "Manual (Equipe)"
+      };
+
+      const metodo = id ? "PUT" : "POST";
+
+      fetch("/api/agendamentos", {
+        method: metodo,
+        headers: {
+          "Content-Type": "application/json",
+          "x-crm-token": tokenAtual
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(() => {
+        fecharModalLead();
+        carregarAgendamentos();
+      })
+      .catch(err => {
+        alert("Erro ao salvar: " + err.message);
+      });
+    }
+
+    function excluirLead(id) {
+      if (!confirm("Tem certeza que deseja remover este agendamento do CRM?")) return;
+
+      fetch("/api/agendamentos?id=" + encodeURIComponent(id), {
+        method: "DELETE",
+        headers: { "x-crm-token": tokenAtual }
+      })
+      .then(() => carregarAgendamentos())
+      .catch(err => alert("Erro ao excluir: " + err.message));
+    }
+
+    // Utilitários
+    function formatarLinkWhatsApp(tel, nome, data, hora) {
+      if (!tel) return "#";
+      const cleanTel = tel.replace(/\D/g, "");
+      const msg = `Olá ${nome || "autor"}! Tudo bem? Aqui é da equipe da Editora Guarnieri. Estou confirmando nossa Sessão Estratégica agendada para ${data || "em breve"} às ${hora || ""}. Já está tudo preparado por aqui!`;
+      return `https://wa.me/${cleanTel}?text=${encodeURIComponent(msg)}`;
+    }
+
+    function formatarData(dataStr, horaStr) {
+      if (!dataStr) return "A definir";
+      try {
+        const partes = dataStr.split("-");
+        if (partes.length === 3) {
+          return `${partes[2]}/${partes[1]}/${partes[0]} às ${horaStr || "--:--"}`;
+        }
+      } catch(e) {}
+      return `${dataStr} ${horaStr || ""}`;
+    }
+
+    function escapeHTML(str) {
+      return (str || "").replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    function exportarCSV() {
+      if (listaLeads.length === 0) {
+        alert("Nenhum dado para exportar.");
+        return;
+      }
+      let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+      csvContent += "ID,Nome,E-mail,WhatsApp,Data Call,Hora Call,Meet Link,Status,Tema Livro,Notas\n";
+
+      listaLeads.forEach(l => {
+        const row = [
+          l.id,
+          `"${(l.nome||'').replace(/"/g, '""')}"`,
+          `"${(l.email||'').replace(/"/g, '""')}"`,
+          `"${(l.whatsapp||'').replace(/"/g, '""')}"`,
+          l.data_call,
+          l.hora_call,
+          `"${(l.meet_link||'').replace(/"/g, '""')}"`,
+          l.status,
+          `"${(l.tema_livro||'').replace(/"/g, '""')}"`,
+          `"${(l.notas||'').replace(/"/g, '""')}"`
+        ].join(",");
+        csvContent += row + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `leads_editora_guarnieri_${new Date().toISOString().split("T")[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function copiarWebhookUrl() {
+      const input = document.getElementById("webhook-url-input");
+      input.select();
+      navigator.clipboard.writeText(input.value);
+      alert("URL do Webhook copiada com sucesso para a área de transferência!");
+    }
+  </script>
+</body>
+</html>
